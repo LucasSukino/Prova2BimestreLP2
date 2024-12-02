@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Prova2BimestreLP2/static/css/main.d221dc40.css",
+    "main.js": "/Prova2BimestreLP2/static/js/main.dd950281.js",
+    "index.html": "/Prova2BimestreLP2/index.html",
+    "main.d221dc40.css.map": "/Prova2BimestreLP2/static/css/main.d221dc40.css.map",
+    "main.dd950281.js.map": "/Prova2BimestreLP2/static/js/main.dd950281.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d221dc40.css",
+    "static/js/main.dd950281.js"
+  ]
+}
