@@ -1,8 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import Estado from "../Estados/estado";
-const urlBase = "http://localhost:3000/usuario";
+const urlBase = "https://backend-bcc-2-b.vercel.app/usuario";
 
-// Função para obter usuários
 export const getUsuarios = createAsyncThunk('getUsuarios', async () => {
     try {
         const resposta = await fetch(urlBase, { method: "GET" });
@@ -26,7 +25,7 @@ export const getUsuarios = createAsyncThunk('getUsuarios', async () => {
     }
 });
 
-// Função para cadastrar usuário
+
 export const cadastrarUsuario = createAsyncThunk('cadastrarUsuario', async (usuario) => {
     try {
         const resposta = await fetch(urlBase, {
@@ -91,17 +90,17 @@ export const cadastrarMensagem = createAsyncThunk('cadastrarMensagem', async (us
 export const excluirUsuario = createAsyncThunk('excluirUsuario', async (usuario) => {
     try {
         const resposta = await fetch(urlBase, {
-            method: "DELETE",  // Manter o método DELETE
+            method: "DELETE",  
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                id: usuario.id,  // Passando o id no corpo da requisição
-                senha: usuario.senha  // Passando a senha no corpo
+                id: usuario.id, 
+                senha: usuario.senha 
             })
         });
 
-        // Verificar se a resposta do servidor é JSON
+       
         const contentType = resposta.headers.get("Content-Type");
 
         if (!contentType || !contentType.includes("application/json")) {
@@ -109,7 +108,7 @@ export const excluirUsuario = createAsyncThunk('excluirUsuario', async (usuario)
             throw new Error(`Resposta do servidor não é um JSON válido. Corpo da resposta: ${text}`);
         }
 
-        // Parse da resposta JSON
+        
         const response = await resposta.json();
         if (response.status) {
             return {
@@ -134,16 +133,16 @@ export const excluirUsuario = createAsyncThunk('excluirUsuario', async (usuario)
 
 export const alterarUsuario = createAsyncThunk('alterarUsuario', async (usuario) => {
     try {
-        // Separar a senha do restante dos dados do usuário
+   
         const { senha, ...usuarioSemSenha } = usuario;
 
-        // Criar o payload com os dados permitidos e a senha para validação
+     
         const payload = {
             ...usuarioSemSenha,
             senha,
         };
 
-        // Fazer a requisição ao backend
+        
         const resposta = await fetch(`${urlBase}/${usuario.id}`, {
             method: "PUT",
             headers: {
@@ -152,14 +151,14 @@ export const alterarUsuario = createAsyncThunk('alterarUsuario', async (usuario)
             body: JSON.stringify(payload),
         });
 
-        // Tratar a resposta
+    
         if (!resposta.ok) {
             throw new Error(`Erro HTTP: ${resposta.status}`);
         }
 
         const response = await resposta.json();
 
-        // Verificar a estrutura do JSON retornado
+     
         if (response.status) {
             return {
                 status: response.status,
@@ -173,7 +172,7 @@ export const alterarUsuario = createAsyncThunk('alterarUsuario', async (usuario)
             };
         }
     } catch (erro) {
-        // Capturar e retornar erros da requisição
+      
         return {
             status: false,
             mensagem: "Não foi possível alterar o usuário: " + erro.message
@@ -247,7 +246,7 @@ const usuarioslice = createSlice({
                 state.estado = Estado.ERRO;
                 state.mensagem = action.payload.mensagem;
             })
-            // Adicionando a lógica para o caso de exclusão do usuário
+            
             .addCase(excluirUsuario.pending, (state, action) => {
                 state.estado = Estado.PENDENTE;
                 state.mensagem = 'Excluindo usuário...';
@@ -274,7 +273,7 @@ const usuarioslice = createSlice({
                 if (action.payload.status) {
                     state.estado = Estado.OCIOSO;
                     state.mensagem = action.payload.mensagem;
-                    // Atualize o usuário na lista de usuários
+                  
                     const index = state.usuarios.findIndex(usuario => usuario.id === action.payload.usuario.id);
                     if (index !== -1) {
                         state.usuarios[index] = action.payload.usuario;

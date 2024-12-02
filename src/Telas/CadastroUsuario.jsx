@@ -7,42 +7,42 @@ import { getUsuarios, cadastrarUsuario } from "../redux/usuarioReducer";
 import Estado from "../Estados/estado";
 
 export default function CadastroUsuario(props) {
-    // Estado inicial do formulário de cadastro
+ 
     const usuarioIni = {
         nickname: "",
         urlAvatar: "",
-        senha: "", // Adicionando campo de senha
+        senha: "",
     };
     
     const [usuario, setUsuario] = useState(usuarioIni);
     const [formValidado, setFormValidado] = useState(false);
 
-    // Pegando dados do estado do Redux
+   
     const { estado, mensagem, usuarios } = useSelector((state) => state.usuario);
     const dispatch = useDispatch();
 
-    // Função para atualizar os dados no formulário
+  
     function escreveu(e) {
         const componente = e.currentTarget;
         setUsuario({ ...usuario, [componente.name]: componente.value });
     }
 
-    // Função para manipular a submissão do formulário
+    
     function manipularSubmissao(e) {
         const form = e.currentTarget;
         if (form.checkValidity()) {
-            dispatch(cadastrarUsuario(usuario));  // Envia o usuário para o backend
-            setUsuario(usuarioIni);  // Limpa o formulário após o envio
-            setFormValidado(false);  // Reseta o estado de validação
+            dispatch(cadastrarUsuario(usuario)); 
+            setUsuario(usuarioIni);  
+            setFormValidado(false);  
         } else {
-            setFormValidado(true);  // Marca o formulário como inválido
+            setFormValidado(true);  
         }
 
         e.stopPropagation();
         e.preventDefault();
     }
 
-    // Carregar os usuários ao montar o componente
+ 
     useEffect(() => {
         dispatch(getUsuarios());
     }, [dispatch]);
@@ -51,7 +51,7 @@ export default function CadastroUsuario(props) {
         <Container>
             <Pagina />
             <Row>
-                {/* Formulário de cadastro */}
+           
                 <Col md={6}>
                     <Form noValidate validated={formValidado} onSubmit={manipularSubmissao}>
                         <Row>
@@ -89,7 +89,7 @@ export default function CadastroUsuario(props) {
                                 </Form.Group>
                             </Col>
 
-                            {/* Adicionando o campo de senha */}
+                           
                             <Col md={12}>
                                 <Form.Group>
                                     <FloatingLabel label="Senha:" className="mb-3">
@@ -119,7 +119,7 @@ export default function CadastroUsuario(props) {
                     </Form>
                 </Col>
 
-                {/* Exibição da lista de usuários cadastrados */}
+              
                 <Col md={12} className="mt-4">
                     <h3>Usuários Cadastrados</h3>
                     {estado === Estado.PENDENTE && <p>Carregando usuários...</p>}

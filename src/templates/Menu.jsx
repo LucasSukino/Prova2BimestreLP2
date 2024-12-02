@@ -16,8 +16,6 @@ export default function Menu(props) {
                         </NavDropdown>
                         <NavDropdown title="Visualizar Cadastros" id="basic-nav-dropdown">
                             <NavDropdown.Item as={Link} to="/usuarioExcluirAlterar">Usuario</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item as={Link} to="/mensagem">Excluir Mensagem</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>

@@ -16,7 +16,7 @@ export default function CadastroUsuario() {
     const [usuario, setUsuario] = useState(usuarioIni);
     const [showAlterar, setShowAlterar] = useState(false); 
     const [senha, setSenha] = useState(""); 
-    const [senhaErro, setSenhaErro] = useState(""); // Adiciona estado para mensagem de erro de senha
+    const [senhaErro, setSenhaErro] = useState(""); 
     const [usuarioExcluir, setUsuarioExcluir] = useState(null); 
     const [showExcluir, setShowExcluir] = useState(false); 
 
@@ -27,13 +27,13 @@ export default function CadastroUsuario() {
         dispatch(getUsuarios());
     }, [dispatch]);
 
-    // Função para abrir o modal de edição
+
     function handleAlterar(usuario) {
         setUsuario({ ...usuario, senha: "" });
         setShowAlterar(true);
     }
 
-    // Função para confirmar a alteração
+    
     function confirmarAlteracao() {
         if (senha) {
             const usuarioAlterado = { ...usuario, senha };
@@ -44,13 +44,13 @@ export default function CadastroUsuario() {
         }
     }
 
-    // Função para abrir o modal de exclusão
+
     function handleExcluir(usuario) {
         setUsuarioExcluir(usuario);
         setShowExcluir(true);
     }
 
-    // Função para confirmar a exclusão
+   
     function confirmarExclusao() {
         if (!senha) {
             setSenhaErro("A senha é obrigatória para confirmar a exclusão!");
@@ -86,6 +86,7 @@ export default function CadastroUsuario() {
                                         alt={`Avatar de ${usuario.nickname}`}
                                         style={{ width: "50px", borderRadius: "50%" }}
                                     />
+                                     <strong>ID:</strong> {usuario.id} |
                                     <strong>Nickname:</strong> {usuario.nickname} |
                                     <strong> Data de Ingresso:</strong> {usuario.dataIngresso}
                                     <div className="d-flex justify-content-end mt-2">
@@ -111,7 +112,7 @@ export default function CadastroUsuario() {
                     )}
                 </Col>
 
-                {/* Adicionado botão "Voltar" */}
+                
                 <Col md={6} className="d-flex justify-content-end mt-4">
                     <Button type="button" variant="secondary" as={Link} to="/">
                         Voltar
@@ -119,7 +120,7 @@ export default function CadastroUsuario() {
                 </Col>
             </Row>
 
-            {/* Modal para Alteração */}
+          
             <Modal show={showAlterar} onHide={() => setShowAlterar(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>Alterar Usuário</Modal.Title>
@@ -165,7 +166,7 @@ export default function CadastroUsuario() {
                 </Modal.Footer>
             </Modal>
 
-            {/* Modal para Exclusão */}
+           
             <Modal show={showExcluir} onHide={() => setShowExcluir(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>Confirmar Exclusão</Modal.Title>
@@ -177,7 +178,7 @@ export default function CadastroUsuario() {
                         value={senha}
                         onChange={(e) => setSenha(e.target.value)}
                     />
-                    {senhaErro && <p style={{ color: "red" }}>{senhaErro}</p>} {/* Exibe mensagem de erro */}
+                    {senhaErro && <p style={{ color: "red" }}>{senhaErro}</p>} 
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={() => setShowExcluir(false)}>
