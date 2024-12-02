@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Prova2BimestreLP2/static/css/main.d221dc40.css",
-    "main.js": "/Prova2BimestreLP2/static/js/main.dd950281.js",
+    "main.js": "/Prova2BimestreLP2/static/js/main.eddeadad.js",
     "index.html": "/Prova2BimestreLP2/index.html",
     "main.d221dc40.css.map": "/Prova2BimestreLP2/static/css/main.d221dc40.css.map",
-    "main.dd950281.js.map": "/Prova2BimestreLP2/static/js/main.dd950281.js.map"
+    "main.eddeadad.js.map": "/Prova2BimestreLP2/static/js/main.eddeadad.js.map"
   },
   "entrypoints": [
     "static/css/main.d221dc40.css",
-    "static/js/main.dd950281.js"
+    "static/js/main.eddeadad.js"
   ]
 }
