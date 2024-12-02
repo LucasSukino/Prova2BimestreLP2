@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CadastroUsuario from "./Telas/CadastroUsuario";
+import ExcluirAlterarUsuario from "./Telas/ExcluirAlterarUsuario";
+import BatePapoTela from "./Telas/BatePapoTela";
+import Home from "./Telas/Home";
+import store from "./redux/store";
+import Mensagem from "./Telas/Mensagem";
+import { Provider } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          {
+          }
+          
+          <Route path="/mensagem" element={<Mensagem />} />
+          <Route path="/batepapogeral" element={<BatePapoTela />} />
+          <Route path="/usuario" element={<CadastroUsuario />} />
+          <Route path="/usuarioExcluirAlterar" element={<ExcluirAlterarUsuario />} />
+          <Route path="/" element={<Home />} />
+          {
+          }
+        </Routes>
+      </BrowserRouter>
+      </Provider>
+     <ToastContainer/>
     </div>
   );
 }
